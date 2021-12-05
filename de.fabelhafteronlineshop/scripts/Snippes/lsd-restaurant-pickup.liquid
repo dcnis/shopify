@@ -1,0 +1,17 @@
+{% comment %}
+    Functions for a restaurant curbside pickup store, ie. pickup date/time selection, and limiting
+    when products can be ordered.
+
+    https://learnshopifydev.com
+{% endcomment %}
+
+<link rel="stylesheet" type="text/css" href='{{ "lsd-restaurant-pickup.css" | asset_url }}' />
+<link rel="stylesheet" type="text/css" href='https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.6.4/themes/classic.css' />
+<link rel="stylesheet" type="text/css" href='https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.6.4/themes/classic.date.css' />
+<link rel="stylesheet" type="text/css" href='https://cdnjs.cloudflare.com/ajax/libs/pickadate.js/3.6.4/themes/classic.time.css' />
+
+{% if template contains 'cart' %}
+    {% if cart.item_count >= 1 %}
+        {{ 'lsd-restaurant-pickup.js' | asset_url | script_tag }}
+    {% endif %}
+{% endif %}
