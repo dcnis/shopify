@@ -208,7 +208,11 @@
         
         $lieferzeit_radiobutton.on('click', function(event){
         
-      const $dateTimePicker = $('#datetimepicker-wrapper');
+            // enable Checkout Button
+            const $checkoutButton = $('input[name="checkout"]');  
+            $checkoutButton.prop('disabled', false);    
+
+        const $dateTimePicker = $('#datetimepicker-wrapper');
         
           console.log(event.target.id);
         if(event.target.id === 'radio_asap'){

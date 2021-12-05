@@ -211,7 +211,7 @@
 
           <div class="cart__actions">
             <input type="submit" name="update" class="button" value="{{ 'cart.general.update' | t }}">
-            <input type="submit" name="checkout" class="button button--secondary" value="{{ 'cart.general.checkout' | t }}">
+            <input type="submit" name="checkout" class="button button--secondary" value="{{ 'cart.general.checkout' | t }}" disabled>
           </div>
         </div>
       </div>
@@ -233,8 +233,9 @@
             <label>
               <input type="radio" id="radio_selbstabholung" name="attributes[Lieferart]" value="Selbstabholung">
               Selbstabholung
-              <i class="fa fa-people-carry"></i>
+              
             </label>
+            <i class="fa fa-handshake-o"></i>
           </div>
           
 		</div>
