@@ -387,16 +387,26 @@ sobald die Bestellung verschickt wurde.
                                                             {% endif %}
 
 
+                                                            {% for tax_line in tax_lines %}
+
                                                             <tr class="subtotal-line">
                                                                 <td class="subtotal-line__title">
                                                                     <p>
                                                                         <span>Steuern</span>
+                                                                        <span class="subtotal-line__discount">
+                                                                            <span class="subtotal-line__discount-title">
+                                                                                {% if tax_line.title.size > 0 %}
+                                                                                    ({{ tax_line.title }} {{ tax_line.rate |times: 100 }}%)
+                                                                                {% endif %}</span>
+                                                                        </span>
                                                                     </p>
                                                                 </td>
                                                                 <td class="subtotal-line__value">
-                                                                    <strong>{{ tax_price | money }}</strong>
+                                                                    <strong>{{ tax_line.price | money }}</strong>
                                                                 </td>
                                                             </tr>
+
+                                                            {% endfor %}
 
 
                                                             {% if total_tip and total_tip > 0 %}
