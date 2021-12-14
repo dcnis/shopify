@@ -30,17 +30,7 @@
       {%- endif -%}
       <div class="banner-text-box-wrapper banner-text-box-wrapper-{{ textbox_positions[0] }} banner-text-box-wrapper-{{ textbox_positions[1]}} banner-text-box-wrapper-{{ section.settings.banner_height }}">
         <div class="banner-text-box-{{ textbox_positions[0] }}">
-          <div class="banner-text-box__content" style="background-color: {{ section.settings.background_color }}; color: {{ section.settings.text_color }}">
-            {%- if section.settings.heading != blank -%}
-              <h2 class="banner__title{% if section.settings.heading_size == 'large' %} h0{% else %} h1{% endif %}">{{ section.settings.heading | escape }}</h2>
-            {%- endif -%}
-            {%- if section.settings.description != blank -%}
-              <p>{{ section.settings.description }}</p>
-            {%- endif -%}
-            {%- if section.settings.button_label != blank and section.settings.button_url != blank -%}
-              <a href="{{ section.settings.button_url }}" class="banner__button button">{{ section.settings.button_label | escape }}</a>
-            {%- endif -%}
-          </div>
+
         </div>
       </div>
     </div>
