@@ -38,7 +38,7 @@
     .search-drawer {
     --focus-color: rgba(var(--color-secondary-background-text-rgba-stripped), 0.8);
     --focus-offset-color: var(--color-secondary-background);
-    }
+    }    
     {%- endif -%}
     {%- endstyle -%}
 
@@ -52,18 +52,16 @@
             <p class="announcement-bar__message" id="desktop-announcement">
 
                 <i class="fa fa-phone" aria-hidden="true"></i> <a href="tel:015128732303">0151 287 32303</a> |
-                <i class="fa fa-envelope-o" aria-hidden="true"></i> <a
-                    href="mailto:info@fabelhafteronlineshop.de">info@fabelhafteronlineshop.de</a>
+                <i class="fa fa-envelope-o" aria-hidden="true"></i> <a href="mailto:info@fabelhafteronlineshop.de">info@fabelhafteronlineshop.de</a>
                 <span class="nobr">| Mindestbestellwert (8€ - 20€) |</span>
-                <span class="nobr">Öffnungszeiten: Mo-Fr 10:00 Uhr - 22:00 Uhr</span>
+                <span class="nobr">Öffnungszeiten: Mo-Fr 10:00 Uhr - 22:00 Uhr</span> 
 
             </p>
 
             <p class="announcement-bar__message" id="mobile-announcement">
 
                 <i class="fa fa-phone" aria-hidden="true"></i> <a href="tel:015128732303">0151 287 32303</a><br>
-                <i class="fa fa-envelope-o" aria-hidden="true"></i> <a
-                    href="mailto:info@fabelhafteronlineshop.de">info@fabelhafteronlineshop.de</a><br>
+                <i class="fa fa-envelope-o" aria-hidden="true"></i> <a href="mailto:info@fabelhafteronlineshop.de">info@fabelhafteronlineshop.de</a><br>
                 <span class="nobr">Mindestbestellwert (8€ - 20€)</span><br>
                 <span class="nobr">Öffnungszeiten: Mo-Fr 10:00 Uhr - 22:00 Uhr</span>
             </p>
@@ -176,14 +174,14 @@
                     </span>
                 </div>
             </a>
-
-            {% if cart.total_price > 0 %}
-            <div class="header__cart-price-bubble" data-header-icon>
-                <span data-cart-price-bubble data-cart-price>
-                    {{ cart.total_price | money }}
-                </span>
-            </div>
-            {% endif %}
+          
+          {% if cart.total_price > 0 %}
+          <div class="smd_warenkorbpreis" data-header-icon>
+            <span data-cart-price-bubble data-cart-price>
+            	{{ cart.total_price | money }}
+            </span>
+          </div>
+          {% endif %}
 
             {%- if settings.show_cart_drawer -%}
             <button class="header__icon header__icon--button header__icon--cart focus-inset" data-header-icon

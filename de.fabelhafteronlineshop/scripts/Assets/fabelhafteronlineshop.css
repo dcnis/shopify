@@ -11,3 +11,13 @@
 }
 
 span.nobr { white-space: nowrap; }
+
+.smd_warenkorbpreis {
+    padding: 0.4rem 1rem;
+    background-color: transparent;
+    color: var(--color-body-text);
+    border: 2px solid currentColor;
+    border-radius: 0.4rem;
+    font-size: 1.3rem;
+    font-weight: var(--font-body-weight-bold); 
+}
