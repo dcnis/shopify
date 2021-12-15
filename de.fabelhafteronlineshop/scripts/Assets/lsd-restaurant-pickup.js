@@ -226,6 +226,46 @@
       });
     
     };
+
+    let addCheckoutButtonInterceptor = function(jQuery) {
+      const $checkout_button = $('input[name="checkout"]');
+        
+      $checkout_button.on('click', function(event){
+        
+        jQuery.getJSON('/cart.js', function(cart) {
+
+          let completeNote = "";
+
+          if(cart.note && cart.note != ""){
+            completeNote = cart.note + "\n\n";
+          }
+
+          const $lieferart = $('input[name="attributes[Lieferart]"]');
+          if($lieferart[0].checked){
+            completeNote += "Lieferart: Lieferung\n";
+          } else {
+            completeNote += "Lieferart: Selbstabholung\n";
+          }
+          const $lieferzeit = $('input[name="attributes[Lieferzeit]"]');
+          if($lieferzeit[0].checked){
+            completeNote += "So schnell wie möglich.\n"
+          } else {
+            // Get Date & Time
+            const $bestimmtes_datum = $('input[name="attributes[Bestimmtes-Datum]"]');
+            completeNote += $bestimmtes_datum.val() + "\n";
+
+            const $bestimmte_zeit = $('input[name="attributes[Bestimmte-Zeit]"]');
+            completeNote += $bestimmte_zeit.val() + " Uhr";
+          }
+
+          console.log(completeNote);
+
+        } );
+
+      });
+
+
+    };
   
     let lsdAppJavaScript = function($){
       $(document).ready(function() {
@@ -237,6 +277,7 @@
                 loadScript('https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js', function(){
                   initializePicker($);
                   deactivePickerIfSofortigeLieferung($);
+                  addCheckoutButtonInterceptor($);
                 });
               });
             });
@@ -244,6 +285,7 @@
         } else {
           initializePicker($);
           deactivePickerIfSofortigeLieferung($);
+          addCheckoutButtonInterceptor($);
         }
       });
     };
