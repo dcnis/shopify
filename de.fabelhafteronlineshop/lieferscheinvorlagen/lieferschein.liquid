@@ -81,35 +81,6 @@
         </div>
     </div>
 
-    <strong>Lieferart</strong>
-    <br>
-    <p>
-        {{ attributes.Lieferart }}<br>
-
-        {% if attributes.Lieferzeit == 'So schnell wie möglich' %}
-        {{ attributes.Lieferzeit }}<br>
-        {% else %}
-        {{ attributes.Bestimmtes-Datum }}<br>
-        {{ attributes.Bestimmte-Zeit }}<br>
-        {% endif %}
-
-    </p>
-
-    {% for prop in line_item.properties %}
-    {{ prop }}<br>
-    {% endfor %}
-<br>
-<br>
-    line_items_in_shipment
-    {% for line_item in line_items_in_shipment %}<br><br>
-    line_item.image {{ line_item.image }}<br><br>
-    title {{ line_item.title }}<br><br>
-    variant_title {{ line_item.variant_title }}<br><br>
-    quantity {{ line_item.quantity }}<br><br>
-    shipping_quantity {{ line_item.shipping_quantity }}<br><br>
-    properties {{ line_item.properties }}<br><br>
-    {% endfor %}
-
     <hr>
     <div class="order-container">
         <div class="order-container-header">
