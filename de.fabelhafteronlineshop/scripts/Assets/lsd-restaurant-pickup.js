@@ -111,7 +111,7 @@
   
       const $appInput = $('#lsd-restaurant-pickup-app');
       const $appButton = $('#lsd-restaurant-pickup-app-btn');
-      const $timePicker = $('input[name="attributes[Pickup-Time]"]').pickatime({
+      const $timePicker = $('input[name="attributes[Bestimmte-Zeit]"]').pickatime({
         format: 'HH:i',
         formatLabel: 'HH:i U!hr',
         interval: timeIntervalInMinutes,
@@ -125,7 +125,7 @@
           }
         }
       });
-      const $datePicker = $('input[name="attributes[Pickup-Date]"]').pickadate({
+      const $datePicker = $('input[name="attributes[Bestimmtes-Datum]"]').pickadate({
         format: 'dddd, dd mmm, yyyy',
         formatSubmit: 'dddd dd mmm yyyy', // can parse with moment(str, 'dddd dd mmm yyyy')
         today: '',
