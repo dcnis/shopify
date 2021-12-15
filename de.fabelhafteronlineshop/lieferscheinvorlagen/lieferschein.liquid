@@ -126,9 +126,15 @@
                         {{ line_item.variant_title }}
                     </span>
                     {% endif %}
-                    {% if line_item.sku != blank %}
+                    {% if line_item.properties != blank %}
                     <span class="line-item-description-line">
-                        {{ line_item.sku }}
+                        {% for prop in line_item.properties %}
+                        
+                        {% unless prop.first contains '_gpo_' %}
+                            {{ prop.first }}: {{ prop.last}}<br>
+                        {% endunless %}
+
+                        {% endfor %}
                     </span>
                     {% endif %}
                 </p>
@@ -151,7 +157,7 @@
     {% if order.note != blank %}
     <div class="notes">
         <p class="subtitle-bold to-uppercase">
-            Notes
+            Besondere Hinweise an den Verkäufer
         </p>
         <p class="notes-details">
             {{ order.note }}
@@ -170,7 +176,7 @@
     {% endif %}
     <div class="footer">
         <p>
-            Thank you for shopping with us!
+            Vielen Dank für Ihren Einkauf!
         </p>
         <p>
             <strong>
