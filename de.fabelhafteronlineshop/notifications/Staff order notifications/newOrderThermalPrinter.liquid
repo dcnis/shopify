@@ -1,0 +1,26 @@
+New Order from:
+<p>**********************</p>
+{% if customer.name %}{{ customer.name }}{% else %}Unknown{% endif %} 
+<p>{{ date | date: "%b %d %I:%M%p" }}</p>
+<p>**********************</p>
+{% for line in line_items %}<p> {{ line.quantity }}x {{ line.title }} {% if line.sku != "" %}(SKU: {{line.sku}}){% endif %} ={{ line.price | money }} </p>{% endfor %}
+<p>**********************</p>
+Payment processing method:</b></p>
+<p>{{ gateway }}</p>
+<p></p>
+{% if requires_shipping and shipping_address %}
+<p><b>Delivery method:</b></p>
+{% for shipping_method in shipping_methods %}<p>{{ shipping_method.title }}</p>{% endfor %}
+<p></p>
+<p><b>Shipping address:</b></p>
+<p>{{ shipping_address.name }}</p>
+<p>{{ shipping_address.street }}</p>
+<p>{{ shipping_address.city }}, {{ shipping_address.province }}  {{ shipping_address.zip }}</p>
+<p>{{ shipping_address.country }}</p>
+<p>{{ shipping_address.phone }}{% endif %}</p>
+<p></p>
+
+{% if shopify_shipping_enabled %}
+<p>Save time and money by <a href="{{ fulfillment_url }}">fulfilling with Shopify Shipping</a></p>
+<p></p>
+{% endif %}
