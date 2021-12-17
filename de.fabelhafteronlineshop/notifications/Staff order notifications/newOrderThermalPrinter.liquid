@@ -1,24 +1,59 @@
-New Order from:
+Neue Bestellung von:
 <p>**********************</p>
-{% if customer.name %}{{ customer.name }}{% else %}Unknown{% endif %} 
-<p>{{ date | date: "%b %d %I:%M%p" }}</p>
+{% if customer.name %}{{ customer.name }}{% else %}Unknown{% endif %}<br>
+{{ date | date: "%b %d %I:%M%p" }}<br>
 <p>**********************</p>
-{% for line in line_items %}<p> {{ line.quantity }}x {{ line.title }} {% if line.sku != "" %}(SKU: {{line.sku}}){% endif %} ={{ line.price | money }} </p>{% endfor %}
+{% for line in line_items %}
+{% if line.title contains 'Extra_' %}
+    &nbsp;&nbsp;&nbsp;&nbsp;({{ line.quantity }}x {{ line.title }} {% if line.sku != "" %}(SKU: {{line.sku}}){% endif %} = {{ line.price | money }})<br>
+{% else %}
+<p> {{ line.quantity }}x {{ line.title }} {% if line.sku != "" %}(SKU: {{line.sku}}){% endif %} = {{ line.price | money }}</p>
+{% endif %}
+{% endfor %}
 <p>**********************</p>
-Payment processing method:</b></p>
-<p>{{ gateway }}</p>
+<p>
+    <b>Zahlungsart:</b><br>
+    {{ gateway }}<br>
+    Zwischensumme: {{ subtotal_price | money }} <br>
+    Versand: {{ shipping_price | money }}<br>
+    <b>Gesamt: {{ total_price | money_with_currency }}</b><br>
+    {% for tax_line in tax_lines %}
+        {% if tax_line.title.size > 0 %} inkl. ({{ tax_line.title }} {{ tax_line.rate |times: 100 }}%): {{ tax_line.price | money }}{% endif %}<br>
+    {% endfor %}
+</p>
 <p></p>
+
 {% if requires_shipping and shipping_address %}
-<p><b>Delivery method:</b></p>
-{% for shipping_method in shipping_methods %}<p>{{ shipping_method.title }}</p>{% endfor %}
+<p>
+    <b>Lieferadresse:</b><br>
+    {{ shipping_address.name }}<br>
+    {{ shipping_address.street }}<br>
+    {{ shipping_address.city }}, {{ shipping_address.province }}  {{ shipping_address.zip }}<br>
+    {{ shipping_address.country }}<br>
+    {{ shipping_address.phone }}
+</p>
+{% endif %}
 <p></p>
-<p><b>Shipping address:</b></p>
-<p>{{ shipping_address.name }}</p>
-<p>{{ shipping_address.street }}</p>
-<p>{{ shipping_address.city }}, {{ shipping_address.province }}  {{ shipping_address.zip }}</p>
-<p>{{ shipping_address.country }}</p>
-<p>{{ shipping_address.phone }}{% endif %}</p>
+
+<p>
+    <b>Lieferart:</b><br>
+    {{ attributes.Lieferart}}<br>
+    {% if attributes.Lieferzeit == 'So schnell wie möglich' %}
+        {{ attributes.Lieferzeit }}<br>
+    {% else %}
+        {{ attributes.Bestimmtes-Datum }}<br>
+        {{ attributes.Bestimmte-Zeit }}<br>
+    {% endif %}
+</p>
+
 <p></p>
+
+{% if order.note != blank %}
+<p>
+    <b>Hinweise vom Kunden:</b><br>
+    {{ order.note }}
+</p>
+{% endif %}
 
 {% if shopify_shipping_enabled %}
 <p>Save time and money by <a href="{{ fulfillment_url }}">fulfilling with Shopify Shipping</a></p>
