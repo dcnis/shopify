@@ -1,7 +1,7 @@
 Neue Bestellung von:
 <p>**********************</p>
 {% if customer.name %}{{ customer.name }}{% else %}Unknown{% endif %}<br>
-{{ date | date: "%b %d %I:%M%p" }}<br>
+{{ date | date: "%a, %b %d %Y, %R Uhr" }}<br>
 <p>**********************</p>
 {% for line in line_items %}
 {% if line.title contains 'Extra_' %}
@@ -16,10 +16,10 @@ Neue Bestellung von:
     {{ gateway }}<br>
     Zwischensumme: {{ subtotal_price | money }} <br>
     Versand: {{ shipping_price | money }}<br>
-    <b>Gesamt: {{ total_price | money_with_currency }}</b><br>
     {% for tax_line in tax_lines %}
-        {% if tax_line.title.size > 0 %} inkl. ({{ tax_line.title }} {{ tax_line.rate |times: 100 }}%): {{ tax_line.price | money }}{% endif %}<br>
-    {% endfor %}
+    {% if tax_line.title.size > 0 %} inkl. Steuer ({{ tax_line.title }} {{ tax_line.rate |times: 100 }}%): {{ tax_line.price | money }}{% endif %}<br>
+{% endfor %}
+    <b>Gesamt: {{ total_price | money_with_currency }}</b><br>
 </p>
 <p></p>
 
